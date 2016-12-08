@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<ui:composition template="/WEB-INF/template/Layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:o="http://omnifaces.org/ui">
+    <f:metadata>
+        <o:viewParam name="id" value="#{cadastroUsuarioBean.usuario}" />    
+        <f:viewAction action="#{cadastroUsuarioBean.prepararCadstroUsuario}" />
+    </f:metadata>
+    <ui:define name="titulo">Cadastro de Usuários</ui:define>
+
+    <ui:define name="corpo">
+        <h1>Cadastrar Usuários</h1>
+
+        <h:form id="frm" style="display: inline-block; width: 100%" >
+
+            <p:messages showDetail="false" showSummary="true" autoUpdate="true" />
+            <p:panelGrid columns="4" id="grid" style="width: 100%" >
+                <p:outputLabel value="Nome" for="nome" />
+                <p:inputText id="nome" value="#{cadastroUsuarioBean.usuario.nome}" size="60" />
+                <p:outputLabel value="Senha" for="senha" />
+                <p:inputText id="senha" value="#{cadastroUsuarioBean.usuario.senha}" size="60" />
+               
+
+                <p:commandButton value="Salvar" action="#{cadastroUsuarioBean.salvar}" icon="ui-icon-disk" update="@form" >
+                                
+                </p:commandButton>
+            </p:panelGrid>
+
+        </h:form>
+    </ui:define>
+</ui:composition>

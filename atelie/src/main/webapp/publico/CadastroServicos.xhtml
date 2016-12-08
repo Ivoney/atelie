@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<ui:composition template="/WEB-INF/template/Layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:o="http://omnifaces.org/ui">
+    <f:metadata>
+        <o:viewParam name="id" value="#{cadastroServicoBean.servico}" />   
+        <f:viewAction action="#{consultaServicosBean.consultar}" />
+        <f:viewAction action="#{cadastroServicoBean.prepararCadastro}" />
+    </f:metadata>
+    <ui:define name="titulo">Cadastro de serviços</ui:define>
+    <ui:define name="corpo">
+        <p:panel id="basic" header="Cadastrar Serviços" style="margin-bottom:20px">
+            <h:form id="frm">
+                <p:messages autoUpdate="true" closable="true"/>
+                <p:toolbar style="margin-top: 20px" >
+                    <p:toolbarGroup>
+                        <p:commandButton value="Salvar" action="#{cadastroServicoBean.salvar}"
+                                         icon="ui-icon-disk" process="@form" update="@form" validateClient="false" >
+                        </p:commandButton>
+                    </p:toolbarGroup>
+                    <p:toolbarGroup align="right">
+                        <p:button value="Pesquisa" outcome="/publico/ConsultaServicos.xhtml"  />
+                    </p:toolbarGroup>
+                </p:toolbar>
+                <p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px"
+                             columnClasses="rotulo, campo">
+                    <p:outputLabel value="Cliente" for="cliente"/>
+                    <h:panelGroup>
+                        <p:inputText id="cliente" value="#{cadastroServicoBean.nomeCliente}" size="40" readonly="#{facesContext.currentPhaseId.name eq 'RENDER_RESPONSE'}"/>
+                        <p:commandButton icon="ui-icon-search" title="Pesquisa" action="#{selecaoClienteBean.abrirDialogo}"
+                                         process="@this" update="@none" >
+                            <p:ajax event="dialogReturn" listener="#{cadastroServicoBean.clienteSelecionado}" process="@this" update="cliente"/>
+                            <p:resetInput target="cliente"/>
+                        </p:commandButton> 
+                    </h:panelGroup>
+                    <p:outputLabel value="Nome do Serviço" for="nomeServico" />
+                    <p:autoComplete id="nomeServico"
+                                    value="#{cadastroServicoBean.servico.nomeServico}" size="60"
+                                    completeMethod="#{cadastroServicoBean.pesquisarDescricoes}" />
+
+                    <p:outputLabel value="Data de Entrada" for="dataEntrada" />
+                    <p:calendar size="20" mask="true" effect="fold" id="dataEntrada" pattern="dd/MM/yyyy"
+                                value="#{cadastroServicoBean.servico.dataEntrada}" />
+
+                    <p:outputLabel value="Data de Saída" for="dataSaida" />
+                    <p:calendar size="20" mask="true" effect="fold" id="dataSaida" pattern="dd/MM/yyyy"
+                                value="#{cadastroServicoBean.servico.dataSaida}" />
+
+                    <p:outputLabel value="Valor Total dos Serviços" for="vTotalServicos"  />
+                    <p:inputText id="vTotalServicos"
+                                 value="#{cadastroServicoBean.servico.valorTotalServico}" size="20" >
+                        <f:convertNumber type="number" minFractionDigits="2" maxFractionDigits="2" locale="pt_BR" />
+                    </p:inputText>
+                    <p:outputLabel value="Forma de Pagamento" for="formaPagto" />
+                    <p:selectOneMenu id="formaPagto"
+                                     value="#{cadastroServicoBean.servico.formaPagamento}">
+                        <f:selectItem itemLabel="Selecione" />
+                        <f:selectItems value="#{cadastroServicoBean.tipoPgto}" var="tipopgt" itemLabel="#{tipopgt.descricao}" itemValue="#{tipopgt}" />
+                    </p:selectOneMenu>
+                    <p:outputLabel value="Status do Serviço" for="status" />
+                    <p:selectOneMenu id="status"
+                                     value="#{cadastroServicoBean.servico.status}">
+                        <f:selectItem itemLabel="Selecione" />
+                        <f:selectItems value="#{cadastroServicoBean.tipoStatus}" var="tipo" itemLabel="#{tipo.descricao}" itemValue="#{tipo}" />
+                    </p:selectOneMenu>
+                </p:panelGrid><br/>
+            </h:form>
+        </p:panel>
+    </ui:define>
+</ui:composition>

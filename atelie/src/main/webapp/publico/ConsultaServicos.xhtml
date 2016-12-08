@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<ui:composition template="/WEB-INF/template/Layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:define name="titulo">Consulta de Serviços</ui:define>
+    <ui:define name="corpo">
+        <p:panel id="basic" header="Serviços" style="margin-bottom:8px"> 
+            <h:form id="frm">
+
+                <p:messages showDetail="false" showSummary="true" autoUpdate="true" />
+                <p:toolbar style="margin-top: 8px">
+                    <p:toolbarGroup>
+                        <p:button value="Novo" outcome="/publico/CadastroServicos.xhtml" />
+                    </p:toolbarGroup>
+                    <p:toolbarGroup align="right">
+
+                        <p:inputText style="margin-right: 10px; width: 200px;" value="#{pesquisaServicoBean.filtro.nomeServico}" placeholder="Entre com o nome do serviço"/>
+
+                        <p:commandButton value="Pesquisar" update="tbl" process="@form" icon="ui-icon-search"/>
+                    </p:toolbarGroup>
+
+                </p:toolbar><br/>
+
+                <p:dataTable value="#{pesquisaServicoBean.model}" lazy="true" 
+                             emptyMessage="Nenhum serviço cadastrado" 
+                             id="tbl" 
+                             paginatorPosition="bottom" 
+                             paginator="true" rows="5"  var="servico"> 
+                    <p:column headerText="Cliente" style="text-align: center" width="130">
+                        <h:outputText value="#{servico.cliente.nome}" />
+                    </p:column>
+                    <p:column headerText="Servicos" sortBy="#{servico.nomeServico}" width="180">
+                        <h:outputText value="#{servico.nomeServico}" />
+                    </p:column>
+
+                    <p:column headerText="Data de Entrada" style="text-align: center" sortBy="#{servico.dataEntrada}"
+                              width="110">
+                        <h:outputText value="#{servico.dataEntrada}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo" />
+                        </h:outputText>
+                    </p:column>
+
+                    <p:column headerText="Data de Saída" style="text-align: center" sortBy="#{servico.dataSaida}"
+                              width="110">
+                        <h:outputText value="#{servico.dataSaida}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo" />
+                        </h:outputText>
+                    </p:column>
+
+                    <p:column headerText="Valor do Serviço" style="text-align: center" sortBy="#{servico.valorTotalServico}"
+                              width="100">
+                        <h:outputText value="#{servico.valorTotalServico}">
+                            <f:convertNumber type="currency" locale="pt_BR" />
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="Forma de Pagamento" style="text-align: center" sortBy="#{servico.formaPagamento.descricao}"
+                              width="125">
+                        <h:outputText value="#{servico.formaPagamento.descricao}">
+
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="Status" style="text-align: center" sortBy="#{servico.status.descricao}"
+                              width="60">
+                        <h:outputText value="#{servico.status.descricao}">
+
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="Ação" width="50" style="text-align: center">
+
+                        <p:button icon="ui-icon-pencil" title="Editar" outcome="/publico/CadastroServicos.xhtml">
+                            <f:param name="id" value="#{servico.id}" />
+                        </p:button>
+                        <p:commandButton icon="ui-icon-trash" title="Excluir" process="@this" update="@form"
+                                         action="#{consultaServicosBean.excluir()}">
+                            <p:confirm icon="ui-icon-alert" header="Confirmação de exclusão"
+                                       message="Tem certeza que deseja excluir esse serviço?" />
+                            <f:setPropertyActionListener value="#{servico}" 
+                                                         target="#{consultaServicosBean.servicoSelecionado}" />
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </p:panel>
+    </ui:define>
+
+</ui:composition>

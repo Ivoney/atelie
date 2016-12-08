@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title><ui:insert name="titulo">Sistema Financeiro Ateliê NS</ui:insert></title>
+        <h:outputStylesheet library="algaworks" name="estilo.css" />
+    </h:head>
+
+    <h:body>
+        <p:ajaxStatus styleClass="ajax-status" >
+            <f:facet name="start">
+                <h:graphicImage library="algaworks" name="loading.gif" />
+            </f:facet>
+            <f:facet name="complete">
+                <h:outputText value="" />
+            </f:facet>
+        </p:ajaxStatus>
+
+        <header>
+            <h1>ATELIÊ NS</h1>
+            <div style="float: right; margin-right: 110px; background: #000033; height: 20px; margin-top: -40px;  ">
+                <span style="float: left; height: 30px; line-height: 30px; margin-right: 60px">
+                    Olá #{seguranca.nomeUsuario}!
+                </span>
+
+                <h:form style="display: inline-block" >
+                    <p:menubar styleClass="menu-sistema" >
+                        <p:submenu label="Operacional">
+                            <p:menuitem value="Clientes" outcome="/publico/CadastroClientes" />
+                            <p:menuitem value="Registrar Vendas" outcome="/publico/CadastroServicos" />                           
+                        </p:submenu>
+                        <p:submenu label="Administrativo">
+                            <p:menuitem value="Funcionários" outcome="/restrito/CadastroFuncionarios"  />
+                            <p:menuitem value="Tabela de Preços" outcome="/publico/ConsultaPrecos" />
+                        </p:submenu>
+                        <p:submenu label="Gráficos">
+                            <p:menuitem value="Tipos de Vendas" outcome="/restrito/GraficosVendas" />
+                        </p:submenu>
+                        <p:submenu label="Relatórios" >
+                            <p:menuitem value="Clientes Cadastrados" outcome="/relatorios/RelatorioClientesCadastrados" />
+                            <p:menuitem value="Vendas por mês" outcome="/relatorios/RelatorioServicosCadastrados" />
+                        </p:submenu>
+                        <p:menuitem value="Sair" url="/j_spring_security_logout" />
+                    </p:menubar>
+                    <p:confirmDialog global="true">
+                        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no"
+                                         icon="ui-icon-close" />
+
+                        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes"
+                                         icon="ui-icon-check" />
+                    </p:confirmDialog>
+
+                </h:form>
+            </div>
+            <div style="clear: both"></div>
+        </header>
+
+        <div id="conteudo">
+            <ui:insert name="corpo" />
+        </div>
+        <p:separator/>
+        <footer>
+            Sistema Administrativo Ateliê NS
+        </footer>
+    </h:body>
+
+</html>

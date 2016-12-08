@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<ui:composition template="/WEB-INF/template/Layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="titulo">Consulta de Clientes</ui:define>
+    <ui:define name="corpo">
+        <p:panel id="basic" header="Clientes" style="margin-bottom:8px">
+            <h:form id="frm">
+                <p:messages showDetail="false" showSummary="true" autoUpdate="true" />
+                <p:toolbar style="margin-top: 8px">
+
+                    <p:toolbarGroup>
+                        <p:button value="Novo" outcome="/publico/CadastroClientes.xhtml" />
+                    </p:toolbarGroup>
+
+                    <p:toolbarGroup align="right">
+                        <p:inputText style="margin-right: 10px; width: 200px;" value="#{pesquisaClienteBean.filtro.nome}" placeholder="Entre com o nome do cliente"/>
+
+                        <p:commandButton value="Pesquisar" icon="ui-icon-search" update="tbl" process="@form"/>
+                    </p:toolbarGroup>
+
+                </p:toolbar><br/>
+                <p:dataTable value="#{pesquisaClienteBean.model}" lazy="true" id="tbl" 
+                             paginatorPosition="bottom" emptyMessage="Nenhum cliente cadastrado." 
+                             var="cliente" paginator="true" rows="5" > 
+                    <p:column headerText="Nome" sortBy="#{cliente.nome}" width="120">
+                        <h:outputText value="#{cliente.nome}" />
+                    </p:column>
+                    <p:column headerText="Endereço" sortBy="#{cliente.endereco}" width="150">
+                        <h:outputText value="#{cliente.endereco}" />
+                    </p:column>
+                    <p:column headerText="Telefone" width="100" sortBy="#{cliente.telefone}">
+                        <h:outputText value="#{cliente.telefone}" />
+                    </p:column>
+                    <p:column headerText="Email" style="text-align: center" sortBy="#{cliente.email}" width="150">
+                        <h:outputText value="#{cliente.email}">
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="Ação" width="30" style="text-align: center">
+                        <p:button icon="ui-icon-pencil" title="Editar" outcome="/publico/CadastroClientes.xhtml">
+                            <f:param name="id" value="#{cliente.id}" />
+                        </p:button>
+                        <p:commandButton icon="ui-icon-trash" title="Excluir" process="@this" update="@form"
+                                         action="#{consultaClienteBean.excluir()}">
+                            <p:confirm icon="ui-icon-alert" header="Confirmação de exclusão"
+                                       message="Tem certeza que deseja excluir esse cliente?" />
+                            <f:setPropertyActionListener value="#{cliente}" 
+                                                         target="#{consultaClienteBean.clienteSelecionado}" />
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </p:panel>
+    </ui:define>
+
+</ui:composition>

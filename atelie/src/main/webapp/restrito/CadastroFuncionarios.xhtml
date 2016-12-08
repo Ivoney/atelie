@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<ui:composition template="/WEB-INF/template/Layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:o="http://omnifaces.org/ui">
+    <f:metadata>
+        <o:viewParam name="id" value="#{cadastroFuncionarioBean.funcionario}" />    
+        <f:viewAction action="#{cadastroFuncionarioBean.prepararCadastroFuncionario}" />
+    </f:metadata>
+    <ui:define name="titulo">Cadastro de Funcionários</ui:define>
+    <ui:define name="corpo">
+
+        <p:panel id="basic" header="Cadastrar Funcionários" style="margin-bottom:8px">
+            <h:form id="frm">
+
+                <p:messages showDetail="false" showSummary="true" autoUpdate="true" />
+                <p:toolbar style="margin-top: 8px">
+                    <p:toolbarGroup>
+                        <p:commandButton value="Salvar" id="botaoSalvar"
+                                         action="#{cadastroFuncionarioBean.salvar}" update="@form" icon="ui-icon-disk"
+                                         validateClient="false" />
+                    </p:toolbarGroup>
+                    <p:toolbarGroup align="right">
+                        <p:button value="Pesquisa" outcome="/restrito/ConsultaFuncionarios.xhtml"  />
+                    </p:toolbarGroup>
+                </p:toolbar><br/>
+                <p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px"
+                             columnClasses="rotulo, campo">
+
+                    <p:outputLabel value="Nome" for="nome" />
+                    <p:inputText id="nome"
+                                 value="#{cadastroFuncionarioBean.funcionario.nome}" size="60"/>
+
+                    <p:outputLabel value="Endereco" for="endereco" />
+                    <p:inputText id="endereco"
+                                 value="#{cadastroFuncionarioBean.funcionario.endereco}" size="60"/>
+
+
+                    <p:outputLabel value="Telefone" for="telefone" />
+                    <p:inputText id="telefone"
+                                 value="#{cadastroFuncionarioBean.funcionario.telefone}"/>
+
+                    <p:outputLabel value="Sexo" for="sexo" />
+                    <p:selectOneButton id="sexo" value="#{cadastroFuncionarioBean.funcionario.sexo}">
+                        <f:selectItems value="#{cadastroFuncionarioBean.sexoTipo}" var="sexoType" itemLabel="#{sexoType.descricao}" itemValue="#{sexoType}"  />
+
+                    </p:selectOneButton>
+
+                    <p:outputLabel value="Data de Admissão" for="dataAdm" />
+                    <p:calendar mask="true" effect="fold" id="dataAdm" pattern="dd/MM/yyyy"
+                                value="#{cadastroFuncionarioBean.funcionario.dataAdmissao}" />
+
+                    <p:outputLabel value="Data de Demissão" for="dataDemissao" />
+                    <p:calendar mask="true" effect="fold" id="dataDemissao" pattern="dd/MM/yyyy"
+                                value="#{cadastroFuncionarioBean.funcionario.dataDemissao}" />
+
+
+                    <p:outputLabel value="Status do Funcionário" for="status" />
+                    <p:selectOneMenu id="status"
+                                     value="#{cadastroFuncionarioBean.funcionario.statusFuncionario}">
+                        <f:selectItem itemLabel="Selecione" />
+                        <f:selectItems value="#{cadastroFuncionarioBean.status}" var="tipo" itemLabel="#{tipo.descricao}" itemValue="#{tipo}" />
+
+                    </p:selectOneMenu>
+      
+
+
+
+                </p:panelGrid>
+
+            </h:form>
+        </p:panel>
+    </ui:define>
+</ui:composition>

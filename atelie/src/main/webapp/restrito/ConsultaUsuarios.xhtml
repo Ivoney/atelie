@@ -1,0 +1,60 @@
+<!--!DOCTYPE html>
+<ui:composition template="/WEB-INF/template/Layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <f:metadata>
+        <f:viewAction action="#{consulta.consultar}" />
+    </f:metadata>
+
+    <ui:define name="titulo">Tabela de preços servicos</ui:define>
+
+    <ui:define name="corpo">
+
+        <h1>Tabela de preços de Serviços</h1>
+
+        <h:form id="frm">
+            <p:messages showDetail="false" showSummary="true" autoUpdate="true" />
+
+            <p:dataTable  var="precoServico" value="#{consultaPrecoServicoBean.precos}" emptyMessage="Nenhum preço cadastrado" stickyHeader="true" resizableColumns="true" style="margin-bottom:20px" paginator="true"
+                          rows="10" paginatorPosition="bottom">
+                <f:facet name="header">
+                    Serviços Cadastrados
+                </f:facet>
+                <p:column headerText="Produto" style="text-align: center" sortBy="#{precoServico.nome}" width="130">
+                    <h:outputText value="#{precoServico.nome}" />
+                </p:column>
+                <p:column headerText="Descrição do Serviço" sortBy="#{precoServico.descricao}" width="180">
+                    <h:outputText value="#{precoServico.descricao}" />
+                </p:column>
+
+                <p:column headerText="Preço do Serviço" style="text-align: center" sortBy="#{precoServico.valor}"
+                          width="110">
+
+                    <h:outputText value="#{precoServico.valor}">
+                        <f:convertNumber type="currency" locale="pt_BR" />
+                    </h:outputText>
+
+                </p:column>
+
+                <p:column headerText="Ação" width="50" style="text-align: center">
+
+                    <p:button icon="ui-icon-pencil" title="Editar" outcome="/CadastroPrecosServicos">
+                        <f:param name="id" value="#{precoServico.id}" />
+                    </p:button>
+                    <p:commandButton icon="ui-icon-trash" title="Excluir" process="@this" update="@form"
+                                     action="#{consultaPrecoServicoBean.excluir()}">
+                        <p:confirm icon="ui-icon-alert" header="Confirmação de exclusão"
+                                   message="Tem certeza que deseja excluir esse produto da tabela ?" />
+                        <f:setPropertyActionListener value="#{precoServico}" 
+                                                     target="#{consultaPrecoServicoBean.precoServicoSelecionado}" />
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+
+</ui:composition>-->

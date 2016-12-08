@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="servicosrealizados" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4449e596-b14f-420a-816a-40b5519c6d0a">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="PieChartDataset" uuid="48d3070b-c6d8-47be-b1dd-29aa44056bae"/>
+	<queryString>
+		<![CDATA[SELECT
+     cliente.`nome` AS cliente_nome,
+     servico.`data_entrada` AS servico_data_entrada,
+     servico.`data_saida` AS servico_data_saida,
+     servico.`nome_servico` AS servico_nome_servico,
+     servico.`status` AS servico_status,
+     servico.`valorTotalServico` AS servico_valorTotalServico
+FROM
+     `cliente` cliente INNER JOIN `servico` servico ON cliente.`id` = servico.`cliente_id`]]>
+	</queryString>
+	<field name="cliente_nome" class="java.lang.String"/>
+	<field name="servico_data_entrada" class="java.sql.Date"/>
+	<field name="servico_data_saida" class="java.sql.Date"/>
+	<field name="servico_nome_servico" class="java.lang.String"/>
+	<field name="servico_status" class="java.lang.String"/>
+	<field name="servico_valorTotalServico" class="java.math.BigDecimal"/>
+	<title>
+		<band height="94" splitType="Stretch">
+			<staticText>
+				<reportElement style="SubTitle" x="276" y="65" width="279" height="29" uuid="626873bc-4547-4c49-9a8d-e52d5e845bd6"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Serviços Mensal]]></text>
+			</staticText>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="65" forecolor="#006699" backcolor="#006699" uuid="b64da693-0fef-45a2-95fa-69c342d884d1"/>
+				<staticText>
+					<reportElement style="Title" x="20" y="0" width="535" height="65" uuid="26c65dbc-aed2-4ed9-a51e-93898fc56faf"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="20" isBold="true" isItalic="false" isUnderline="false"/>
+					</textElement>
+					<text><![CDATA[Sistema Administrativo Atelier NS]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="0" y="0" width="86" height="20" forecolor="#000000" uuid="a1736406-0513-4e8a-b692-7ac5eebd4f7e"/>
+				<box leftPadding="2">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="86" y="0" width="144" height="20" forecolor="#000000" uuid="966cb197-4bb0-4b7a-9d57-fad8c39d91fc"/>
+				<box leftPadding="2">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Serviços]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="230" y="0" width="94" height="20" forecolor="#000000" uuid="62e584f5-fdbd-4468-ace7-c3707d695047"/>
+				<box leftPadding="2">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Data de entrada]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="324" y="0" width="91" height="20" forecolor="#000000" uuid="36171a54-7550-4038-a953-25d983c96293"/>
+				<box leftPadding="2">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Data de saída]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="415" y="0" width="70" height="20" forecolor="#000000" uuid="7e988207-9694-4da2-9a5e-a50f1dc2b5b2"/>
+				<box leftPadding="2">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Valor Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="485" y="0" width="70" height="20" forecolor="#000000" uuid="b8b56f31-3766-466d-b492-e9e9d3d1d69a"/>
+				<box leftPadding="2">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="86" height="20" uuid="4e43043b-8fcb-47d2-86af-674d6af47415"/>
+				<box leftPadding="2">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliente_nome}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="86" y="0" width="144" height="20" uuid="573c6add-9a19-415d-9190-df8393fd3e8d"/>
+				<box leftPadding="2">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{servico_nome_servico}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="0" width="94" height="20" uuid="9181e709-2122-44b1-8afe-96cdc71ed413"/>
+				<box leftPadding="2">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{servico_data_entrada}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="324" y="0" width="91" height="20" uuid="7593c69f-17d7-4e0a-b202-24e68252e168"/>
+				<box leftPadding="2">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{servico_data_saida}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="415" y="0" width="70" height="20" uuid="75707e0b-282b-4c14-9990-13533a75cec2"/>
+				<box leftPadding="2">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{servico_valorTotalServico}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="485" y="0" width="70" height="20" uuid="573808a9-6c67-46ae-8559-8ea365063a0f"/>
+				<box leftPadding="2">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{servico_status}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="35" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="14" forecolor="#D0B48E" backcolor="#006699" uuid="9f8683ed-d2aa-4f4b-82b8-a70b7c6fd5a5"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement x="0" y="0" width="100" height="14" uuid="556e58ac-df61-4468-b1c7-e0bfac7064d0"/>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="435" y="0" width="80" height="14" uuid="6b3b1a0b-335e-4afa-b1c1-33941a2aec04"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Report">
+					<reportElement x="515" y="0" width="40" height="14" uuid="98104d9e-fed6-4ca3-9e64-78c39a562849"/>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
