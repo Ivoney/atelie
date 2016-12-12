@@ -35,7 +35,7 @@
 	
         <intercept-url pattern="/BemVindo.xhtml" access="isAuthenticated()" />
         <intercept-url pattern="/AcessoNegado.xhtml" access="isAuthenticated()" />
-        <intercept-url pattern="/publico/**" access="isAuthenticated()" />
+        <intercept-url pattern="/publico/**" access="hasAnyRole('ADMINISTRADORES','FUNCIONARIOS')" />
         <intercept-url pattern="/restrito/**"  access="hasAnyRole('ADMINISTRADORES')" />
         <intercept-url pattern="/relatorios/**" access="hasAnyRole('ADMINISTRADORES')" />
         <intercept-url pattern="/**" access="denyAll" />
