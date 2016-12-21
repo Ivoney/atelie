@@ -1,34 +1,32 @@
 <!DOCTYPE html>
-<ui:composition template="/WEB-INF/template/Layout.xhtml"
-                xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:p="http://primefaces.org/ui"
-                xmlns:o="http://omnifaces.org/ui">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Login</title>
+        <h:outputStylesheet library="algaworks" name="estilo.css" />
+    </h:head>
+    <h:body>
+        <h1 id="head">ATELIER NS</h1>
+        <div id="login-dialog">
+            <h:form id="frm">
+                <p:fieldset legend="Renovar Senha" style="margin-bottom: 20px; width: auto; height: auto; background: #f5f5f5; border: #999999 solid 0.5px">
+                    <p:growl id="growl" showDetail="true" sticky="true" />  
+                    <p style="color: #666; font-family: arial, sans-serif; font-size: 14px">Para redefinir sua senha, digite o email que você usa para entrar no sistema.<br/></p>
+                    <p style="color: #666; font-family: arial, sans-serif; font-size: 14px">Você receberá uma mensagem em seu email com os procedimentos para renovar sua senha.</p>    
 
-    <ui:define name="titulo">Renovar Senha</ui:define>
-    <ui:define name="corpo">
-        <h:body>
-            <h1 id="head">ATELIER NS</h1>
-            <div id="login-dialog">
-                <h:form id="frm">
-                    <p:fieldset legend="Renovar Senha" style="margin-bottom: 20px;">
-                        <p:growl id="growl" showDetail="true" sticky="true" />  
-                        <p>Para redefinir sua senha, digite o email que você usa para entrar no GetControl.<br/></p>
-                        <p>Você receberá uma mensagem em seu email com os procedimentos para renovar sua senha.</p>    
+                    <h:panelGrid columns="2" styleClass="grid-login">
+                        <p:outputLabel value="Informe seu Email" for="email" /><br/>
+                        <p:inputText value="" id="email" size="30" required="true" requiredMessage="Você não digitou seu email cadastrado." /><br/><br/>
 
-                        <h:panelGrid columns="2" styleClass="grid-login">
-                            <p:outputLabel value="Informe seu Email" for="email" /><br/>
-                            <p:inputText value="#{autenticacaoBean.email}" id="email" size="20" required="true" requiredMessage="Você não digitou o usuário." />
+                        <p:commandButton value="Enviar" update="growl" />
 
-                            <p:commandButton action="#{autenticacaoBean.logar}" value="Enviar" update="growl" />
-
-                            <p:outputLabel />                                                          
-                        </h:panelGrid>
-                    </p:fieldset>
-                </h:form>
-            </div>
-        </h:body>
-    </ui:define>
-</ui:composition>
+                        <p:outputLabel />                                                          
+                    </h:panelGrid>
+                </p:fieldset>
+            </h:form>
+        </div>
+    </h:body>
+</html>

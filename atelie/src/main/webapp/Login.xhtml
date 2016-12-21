@@ -16,7 +16,7 @@
         </f:metadata>
         <div id="login-dialog">
             <h:form id="frm" prependId="false">
-                <p:fieldset legend="Acesso ao Sistema" style="margin-bottom: 20px;">
+                <p:fieldset legend="Acesso ao Sistema" style="margin-bottom: 20px; width: auto; height: auto; background: #f5f5f5; border: #999999 solid 0.5px">
                     <p:growl id="growl" showDetail="true" sticky="true" />  
                     <h:panelGrid columns="2" styleClass="grid-login">
                         <p:outputLabel value="E-mail" />
@@ -26,9 +26,14 @@
                         <p:password size="30" id="j_password" />
 
                         <h:panelGroup/>
-                        <p:commandButton value="Login" action="#{loginBean.login}" ajax="false" />
-                        <h:link value="Esqueci Minha Senha" outcome="RenovarSenha.xhtml"></h:link>
-                        <p:outputLabel />                                                          
+
+                        <p:commandButton value="Login" actionListener="#{loginBean.login}" ajax="false" />
+                        <h:panelGroup/>   
+                        <h:link style="color: #fff; margin-left: 110px;" value="Esqueci Minha Senha" outcome="RenovarSenha.xhtml"></h:link>
+                        <p:outputPanel/>
+                        <h:panelGroup/>
+
+
                     </h:panelGrid>
                 </p:fieldset>
             </h:form>
