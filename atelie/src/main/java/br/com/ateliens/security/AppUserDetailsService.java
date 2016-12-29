@@ -20,7 +20,7 @@ public class AppUserDetailsService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		Usuarios usuarios = CDIServiceLocator.getBean(Usuarios.class);
-		Usuario usuario = usuarios.porEmail(email);
+		Usuario usuario = usuarios.buscaPorEmail(email);
 		
 		UsuarioSistema user = null;
 		

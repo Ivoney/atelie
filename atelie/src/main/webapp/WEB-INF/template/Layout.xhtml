@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
@@ -26,7 +27,7 @@
                 <span style="float: left; height: 30px; line-height: 30px; margin-right: 60px">
                     Olá #{seguranca.nomeUsuario}
                 </span>
-
+                
                 <h:form style="display: inline-block" >
                     <p:menubar styleClass="menu-sistema" >
                         <p:submenu label="Operacional">
@@ -34,13 +35,14 @@
                             <p:menuitem value="Registrar Vendas" outcome="/publico/CadastroServicos" />                           
                         </p:submenu>
                         <p:submenu label="Administrativo" >
-                            <p:menuitem value="Funcionários" outcome="/restrito/CadastroFuncionarios" />
+                      
+                            <p:menuitem rendered="#{loginBean.isAdmin('FUNCIONARIOS')}" value="Funcionários" outcome="/restrito/CadastroFuncionarios" />
                             <p:menuitem value="Tabela de Preços" outcome="/publico/ConsultaPrecos" />
                         </p:submenu>
-                        <p:submenu label="Gráficos">
+                        <p:submenu rendered="#{loginBean.isAdmin('FUNCIONARIOS')}" label="Gráficos">
                             <p:menuitem value="Tipos de Vendas" outcome="/restrito/GraficosVendas" />
                         </p:submenu>
-                        <p:submenu label="Relatórios" >
+                        <p:submenu rendered="#{loginBean.isAdmin('FUNCIONARIOS')}" label="Relatórios" >
                             <p:menuitem value="Clientes Cadastrados" outcome="/relatorios/RelatorioClientesCadastrados" />
                             <p:menuitem value="Vendas por mês" outcome="/relatorios/RelatorioServicosCadastrados" />
                         </p:submenu>

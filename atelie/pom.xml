@@ -9,7 +9,7 @@
 
     <name>atelie</name>
 
- <properties>
+    <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -161,6 +161,7 @@
         </dependency>
 		
         <!-- Spring Security (autenticação e autorização) -->
+      
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
@@ -177,6 +178,13 @@
             <version>3.2.5.RELEASE</version>
         </dependency>
 		
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>3.2.5.RELEASE</version>
+            <type>jar</type>
+        </dependency>
+
         <dependency>
             <groupId>net.sf.jasperreports</groupId>
             <artifactId>jasperreports</artifactId>
@@ -204,8 +212,14 @@
             <groupId>org.primefaces.extensions</groupId>
             <artifactId>all-themes</artifactId>
             <version>1.0.8</version>
-        </dependency> 
-        
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-taglibs -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>3.2.5.RELEASE</version>
+        </dependency>
+
     </dependencies>
     <build>
         <finalName>atelie</finalName>

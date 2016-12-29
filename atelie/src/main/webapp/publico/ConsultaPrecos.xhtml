@@ -17,7 +17,7 @@
                 <p:messages showDetail="false" showSummary="true" autoUpdate="true" />
                 <p:toolbar style="margin-top: 8px">
                     <p:toolbarGroup>
-                        <p:button value="Novo" outcome="/publico/TabelaPrecos.xhtml" />
+                        <p:button rendered="#{loginBean.isAdmin('FUNCIONARIOS')}" value="Novo" outcome="/publico/TabelaPrecos.xhtml" />
                     </p:toolbarGroup>
                     <p:toolbarGroup align="right">
 
@@ -56,7 +56,7 @@
                     </p:column>
 
 
-                    <p:column headerText="Ação" width="50" style="text-align: center">
+                    <p:column rendered="#{loginBean.isAdmin('FUNCIONARIOS')}" headerText="Ação" width="50" style="text-align: center">
 
                         <p:button icon="ui-icon-pencil" title="Editar" outcome="/publico/TabelaPrecos.xhtml">
                             <f:param name="id" value="#{produto.id}" />

@@ -40,7 +40,7 @@
                         <h:outputText value="#{cliente.email}">
                         </h:outputText>
                     </p:column>
-                    <p:column headerText="Ação" width="30" style="text-align: center">
+                    <p:column rendered="#{loginBean.isAdmin('FUNCIONARIOS')}" headerText="Ação" width="30" style="text-align: center">
                         <p:button icon="ui-icon-pencil" title="Editar" outcome="/publico/CadastroClientes.xhtml">
                             <f:param name="id" value="#{cliente.id}" />
                         </p:button>
