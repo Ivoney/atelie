@@ -16,14 +16,14 @@ public class CadastroUsuarios implements Serializable {
 
     @Transacional
     public void salvar(Usuario usuario) throws NegocioException {
-         
-
+        this.usuarios.guardar(usuario);
     }
 
     @Transacional
     public void excluir(Usuario usuario) throws NegocioException {
         
         usuario = this.usuarios.porId(usuario.getId());
+        this.usuarios.remover(usuario);
         
          
      

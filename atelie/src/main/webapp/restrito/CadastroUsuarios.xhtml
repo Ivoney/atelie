@@ -8,28 +8,48 @@
                 xmlns:o="http://omnifaces.org/ui">
     <f:metadata>
         <o:viewParam name="id" value="#{cadastroUsuarioBean.usuario}" />    
-        <f:viewAction action="#{cadastroUsuarioBean.prepararCadstroUsuario}" />
+        <f:viewAction action="#{cadastroUsuarioBean.prepararCadastroUsuario}" />
     </f:metadata>
     <ui:define name="titulo">Cadastro de Usuários</ui:define>
 
     <ui:define name="corpo">
-        <h1>Cadastrar Usuários</h1>
 
-        <h:form id="frm" style="display: inline-block; width: 100%" >
 
-            <p:messages showDetail="false" showSummary="true" autoUpdate="true" />
-            <p:panelGrid columns="4" id="grid" style="width: 100%" >
-                <p:outputLabel value="Nome" for="nome" />
-                <p:inputText id="nome" value="#{cadastroUsuarioBean.usuario.nome}" size="60" />
-                <p:outputLabel value="Senha" for="senha" />
-                <p:inputText id="senha" value="#{cadastroUsuarioBean.usuario.senha}" size="60" />
-               
+        <p:panel id="basic" header="Cadastrar Usuários no Sistema" style="margin-bottom:8px">
+            <h:form id="frm">
 
-                <p:commandButton value="Salvar" action="#{cadastroUsuarioBean.salvar}" icon="ui-icon-disk" update="@form" >
-                                
-                </p:commandButton>
-            </p:panelGrid>
+                <p:messages showDetail="false" showSummary="true" autoUpdate="true" />
+                <p:toolbar style="margin-top: 8px">
+                    <p:toolbarGroup>
+                        <p:commandButton value="Salvar" id="botaoSalvar"
+                                         action="#{cadastroUsuarioBean.salvar}" update="@form" icon="ui-icon-disk"
+                                         validateClient="false" />
+                    </p:toolbarGroup>
+                    <p:toolbarGroup align="right">
+                        <p:button value="Pesquisa" outcome="/restrito/ConsultaUsuarios.xhtml"  />
+                    </p:toolbarGroup>
+                </p:toolbar><br/>
+                <p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px"
+                             columnClasses="rotulo, campo">
 
-        </h:form>
+                    <p:outputLabel value="Nome" for="nome" />
+                    <p:inputText id="nome" value="#{cadastroUsuarioBean.usuario.nome}" size="60" />
+
+                    <p:outputLabel value="Email" for="email" />
+                    <p:inputText id="email" value="#{cadastroUsuarioBean.usuario.email}" size="60" />
+
+                    <p:outputLabel value="Senha" for="senha" />
+                    <p:password id="senha" value="#{cadastroUsuarioBean.usuario.senha}" size="60" />
+
+                    <p:outputLabel value="Perfil" for="perfil" />
+                    <p:inputText id="perfil" value="#{cadastroUsuarioBean.grupo.nome}" size="60" />
+
+                    <p:outputLabel value="Ativo" for="ativo" />
+                    <p:inputText id="ativo" value="#{cadastroUsuarioBean.usuario.isAtivo}" size="60" />
+
+                </p:panelGrid>
+
+            </h:form>
+        </p:panel>
     </ui:define>
 </ui:composition>

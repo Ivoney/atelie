@@ -7,6 +7,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.TypedQuery;
 
 public class Usuarios implements Serializable {
 
@@ -18,7 +19,12 @@ public class Usuarios implements Serializable {
     public Usuario porId(Long id) {
         return this.manager.find(Usuario.class, id);
     }
-
+    
+    public List<Usuario> todos(){
+        TypedQuery<Usuario> query = manager.createQuery("from Usuario", Usuario.class);
+        return query.getResultList();
+    }
+    
     public Usuario buscaPorEmail(String email) {
         Usuario usuario = null;
 
@@ -31,5 +37,16 @@ public class Usuarios implements Serializable {
 
         return usuario;
     }
+    
+    public void adicionar(Usuario usuario){
+        this.manager.persist(usuario);
+    }
+    
+    public Usuario guardar(Usuario usuario){
+        return manager.merge(usuario);
+    }
 
+    public void remover(Usuario usuario){
+        this.manager.remove(usuario);
+    }
 }

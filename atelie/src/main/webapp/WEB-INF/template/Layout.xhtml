@@ -25,20 +25,22 @@
             <h1>ATELIÊ NS</h1>
             <div style="float: right; margin-right: 110px; background: #000033; height: 20px; margin-top: -40px;  ">
                 <span style="float: left; height: 30px; line-height: 30px; margin-right: 60px">
-                    Olá #{seguranca.nomeUsuario}
+                    Logado como  #{seguranca.nomeUsuario}
                 </span>
-                
+
                 <h:form style="display: inline-block" >
                     <p:menubar styleClass="menu-sistema" >
                         <p:submenu label="Operacional">
                             <p:menuitem value="Clientes" outcome="/publico/CadastroClientes" />
                             <p:menuitem value="Registrar Vendas" outcome="/publico/CadastroServicos" />                           
                         </p:submenu>
-                        <p:submenu label="Administrativo" >
-                      
+                        <p:submenu label="Administração" >                           
+                            <p:menuitem rendered="#{loginBean.isAdmin('FUNCIONARIOS')}" value="Cadastro de Usuários" outcome="/restrito/CadastroUsuarios" />                     
+
                             <p:menuitem rendered="#{loginBean.isAdmin('FUNCIONARIOS')}" value="Funcionários" outcome="/restrito/CadastroFuncionarios" />
                             <p:menuitem value="Tabela de Preços" outcome="/publico/ConsultaPrecos" />
                         </p:submenu>
+
                         <p:submenu rendered="#{loginBean.isAdmin('FUNCIONARIOS')}" label="Gráficos">
                             <p:menuitem value="Tipos de Vendas" outcome="/restrito/GraficosVendas" />
                         </p:submenu>

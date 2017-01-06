@@ -1,11 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- 
 package br.com.ateliens.controller;
 
-import br.com.ateliens.model.Cliente;
+import br.com.ateliens.model.Grupo;
 import br.com.ateliens.model.Usuario;
 import br.com.ateliens.repository.Usuarios;
 import br.com.ateliens.service.CadastroUsuarios;
@@ -32,9 +27,12 @@ public class CadastroUsuarioBean implements Serializable {
 
     private Usuario usuario;
 
+    @Inject
+    private Grupo grupo;
+
     private List<Usuario> todosUsuarios;
 
-    public void prepararCadstroUsuario() {
+    public void prepararCadastroUsuario() {
         this.todosUsuarios = this.usuarios.todos();
 
         if (this.usuario == null) {
@@ -66,6 +64,15 @@ public class CadastroUsuarioBean implements Serializable {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    
+
+    public Grupo getGrupo() {
+        return grupo;
+    }
+
+    public void setGrupo(Grupo grupo) {
+        this.grupo = grupo;
+    }
+
+  
+
 }
-*/

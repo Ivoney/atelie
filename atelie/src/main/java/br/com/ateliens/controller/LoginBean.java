@@ -1,5 +1,6 @@
 package br.com.ateliens.controller;
 
+import br.com.ateliens.model.Grupo;
 import br.com.ateliens.util.jsf.FacesUtil;
 import java.io.IOException;
 import java.io.Serializable;
@@ -31,6 +32,8 @@ public class LoginBean implements Serializable {
 
     @Inject
     private HttpServletResponse response;
+    
+
 
     private String email;
 
@@ -68,4 +71,6 @@ public class LoginBean implements Serializable {
         this.email = email;
     }
 
+
+    
 }
