@@ -16,7 +16,8 @@ public class Grupo implements Serializable {
 
     private Long id;
     private String nome;
- 
+    private String descricao;
+
     @Id
     @GeneratedValue
     public Long getId() {
@@ -36,7 +37,14 @@ public class Grupo implements Serializable {
         this.nome = nome;
     }
 
-     
+    @Column(nullable = false, length = 40)
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
 
     @Override
     public int hashCode() {

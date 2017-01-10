@@ -7,28 +7,43 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:o="http://omnifaces.org/ui">
     <f:metadata>
-        <o:viewParam name="id" value="#{cadastroUsuarioBean.usuario}" />    
-        <f:viewAction action="#{cadastroUsuarioBean.prepararCadastroUsuario}" />
+        <o:viewParam name="id" value="#{cadastroUsuarioBean.usuario}" />  
+
+        <f:viewAction action="#{cadastroUsuarioBean.prepararCadastroUsuario}" />  
     </f:metadata>
     <ui:define name="titulo">Cadastro de Usuários</ui:define>
 
     <ui:define name="corpo">
 
 
-        <p:panel id="basic" header="Cadastrar Usuários no Sistema" style="margin-bottom:8px">
-            <h:form id="frm">
+        <p:panel id="basic" header="Cadastrar Grupos de Usuários" style="margin-bottom:8px">
+            <h:form id="frmGrupo">
 
                 <p:messages showDetail="false" showSummary="true" autoUpdate="true" />
-                <p:toolbar style="margin-top: 8px">
-                    <p:toolbarGroup>
-                        <p:commandButton value="Salvar" id="botaoSalvar"
-                                         action="#{cadastroUsuarioBean.salvar}" update="@form" icon="ui-icon-disk"
-                                         validateClient="false" />
-                    </p:toolbarGroup>
-                    <p:toolbarGroup align="right">
-                        <p:button value="Pesquisa" outcome="/restrito/ConsultaUsuarios.xhtml"  />
-                    </p:toolbarGroup>
-                </p:toolbar><br/>
+
+                <p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px"
+                             columnClasses="rotulo, campo">
+
+                    <p:outputLabel value="Nome" for="nome" />
+                    <p:inputText id="nome" value="#{grupoBean.grupo.nome}" size="60" />
+
+                    <p:outputLabel value="Email" for="email" />
+                    <p:inputText id="email" value="#{grupoBean.grupo.descricao}" size="60" />
+
+                    <p:commandButton value="Salvar" id="botaoSalvar"
+                                     action="#{grupoBean.salvar}" update="@this" icon="ui-icon-disk"
+                                     validateClient="false" />
+
+                </p:panelGrid>
+
+            </h:form>
+        </p:panel>
+
+        <p:panel id="basic" header="Cadastrar de Usuários" style="margin-bottom:8px">
+            <h:form id="frmUser">
+
+                <p:messages showDetail="false" showSummary="true" autoUpdate="true" />
+
                 <p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px"
                              columnClasses="rotulo, campo">
 
@@ -37,15 +52,13 @@
 
                     <p:outputLabel value="Email" for="email" />
                     <p:inputText id="email" value="#{cadastroUsuarioBean.usuario.email}" size="60" />
-
+                    
                     <p:outputLabel value="Senha" for="senha" />
-                    <p:password id="senha" value="#{cadastroUsuarioBean.usuario.senha}" size="60" />
-
-                    <p:outputLabel value="Perfil" for="perfil" />
-                    <p:inputText id="perfil" value="#{cadastroUsuarioBean.grupo.nome}" size="60" />
-
-                    <p:outputLabel value="Ativo" for="ativo" />
-                    <p:inputText id="ativo" value="#{cadastroUsuarioBean.usuario.isAtivo}" size="60" />
+                    <p:inputText id="senha" value="#{cadastroUsuarioBean.usuario.senha}" size="60" />
+                    
+                    <p:commandButton value="Salvar" id="botaoSalvar"
+                                     action="#{grupoBean.salvar}" update="@this" icon="ui-icon-disk"
+                                     validateClient="false" />
 
                 </p:panelGrid>
 

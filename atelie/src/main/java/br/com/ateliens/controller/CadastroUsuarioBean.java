@@ -1,6 +1,7 @@
 package br.com.ateliens.controller;
 
 import br.com.ateliens.model.Grupo;
+import br.com.ateliens.model.StatusUsuarios;
 import br.com.ateliens.model.Usuario;
 import br.com.ateliens.repository.Usuarios;
 import br.com.ateliens.service.CadastroUsuarios;
@@ -73,6 +74,8 @@ public class CadastroUsuarioBean implements Serializable {
         this.grupo = grupo;
     }
 
-  
+    public StatusUsuarios[] getStatus() {
+        return StatusUsuarios.values();
+    }
 
 }

@@ -8,12 +8,15 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
- 
+
 import javax.persistence.Table;
 
 @Entity
@@ -23,12 +26,12 @@ public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
-    private Date dataCriacao;
     private String nome;
     private String email;
     private String senha;
-    private String isAtivo;
-    private List<Grupo> grupos = new ArrayList<>();
+    private StatusUsuarios status;
+
+    private List<Grupo> grupos;
 
     @Id
     @GeneratedValue
@@ -43,6 +46,16 @@ public class Usuario implements Serializable {
     @Column(nullable = false, length = 80)
     public String getNome() {
         return nome;
+    }
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    public StatusUsuarios getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusUsuarios status) {
+        this.status = status;
     }
 
     public void setNome(String nome) {
@@ -67,14 +80,6 @@ public class Usuario implements Serializable {
         this.senha = senha;
     }
 
-    public Date getDataCriacao() {
-        return dataCriacao;
-    }
-
-    public void setDataCriacao(Date dataCriacao) {
-        this.dataCriacao = dataCriacao;
-    }
-
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "usuario_grupo", joinColumns = @JoinColumn(name = "usuario_id"),
             inverseJoinColumns = @JoinColumn(name = "grupo_id"))
@@ -84,15 +89,6 @@ public class Usuario implements Serializable {
 
     public void setGrupos(List<Grupo> grupos) {
         this.grupos = grupos;
-    }
-
-    @Column(nullable = false)
-    public String getIsAtivo() {
-        return isAtivo;
-    }
-
-    public void setIsAtivo(String isAtivo) {
-        this.isAtivo = isAtivo;
     }
 
     @Override
