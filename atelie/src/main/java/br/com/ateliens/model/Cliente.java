@@ -42,10 +42,7 @@ public class Cliente implements Serializable {
     @Size(max = 20)
     @Column(length = 50, nullable = false)
     private String telefone;
-
-    @OneToOne
-    @JoinColumn(nullable = true)
-    private Servico servico;
+ 
     
     public Long getId() {
         return id;
@@ -87,13 +84,7 @@ public class Cliente implements Serializable {
         this.telefone = telefone;
     }
 
-    public Servico getServico() {
-        return servico;
-    }
-
-    public void setServico(Servico servico) {
-        this.servico = servico;
-    }
+ 
 
     @Override
     public int hashCode() {

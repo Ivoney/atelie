@@ -7,13 +7,14 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:o="http://omnifaces.org/ui">
     <f:metadata>
-        <o:viewParam name="id" value="#{cadastroUsuarioBean.usuario}" />
-        <f:viewAction action="#{cadastroUsuarioBean.prepararCadastroUsuario}" />  
+        <o:viewParam name="id" value="#{grupoBean.grupo}" />  
+        <f:viewAction action="#{grupoBean.prepararCadastroGrupo}" />  
     </f:metadata>
-    <ui:define name="titulo">Cadastro de Usuários</ui:define>
+    <ui:define name="titulo">Cadastro de Grupos</ui:define>
+
     <ui:define name="corpo">
-        <p:panel id="basic" header="Cadastrar de Usuários" style="margin-bottom:8px">
-            <h:form id="frmUser">
+        <p:panel id="basic" header="Cadastrar Grupos de Usuários" style="margin-bottom:8px">
+            <h:form id="frmGrupo">
 
                 <p:messages showDetail="false" showSummary="true" autoUpdate="true" />
 
@@ -21,19 +22,18 @@
                              columnClasses="rotulo, campo">
 
                     <p:outputLabel value="Nome" for="nome" />
-                    <p:inputText id="nome" value="#{cadastroUsuarioBean.usuario.nome}" size="60" />
+                    <p:inputText id="nome" value="#{grupoBean.grupo.nome}" size="60" />
 
-                    <p:outputLabel value="Email" for="email" />
-                    <p:inputText id="email" value="#{cadastroUsuarioBean.usuario.email}" size="60" />
-                    
-                    <p:outputLabel value="Senha" for="senha" />
-                    <p:inputText id="senha" value="#{cadastroUsuarioBean.usuario.senha}" size="60" />
-                    
+                    <p:outputLabel value="Descrição" for="descricao" />
+                    <p:inputText id="descricao" value="#{grupoBean.grupo.descricao}" size="60" />
+
                     <p:commandButton value="Salvar" id="botaoSalvar"
-                                     action="#{cadastroUsuarioBean.salvar}" update="@form" icon="ui-icon-disk"
+                                     action="#{grupoBean.salvar}" update="@form" icon="ui-icon-disk"
                                      validateClient="false" />
                 </p:panelGrid>
+
             </h:form>
         </p:panel>
+
     </ui:define>
 </ui:composition>

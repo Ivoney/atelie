@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import javax.persistence.Table;
 
@@ -29,9 +30,8 @@ public class Usuario implements Serializable {
     private String nome;
     private String email;
     private String senha;
-    private StatusUsuarios status;
-
-    private List<Grupo> grupos;
+ 
+    private List<Grupo> grupos = new ArrayList<>();
 
     @Id
     @GeneratedValue
@@ -46,16 +46,6 @@ public class Usuario implements Serializable {
     @Column(nullable = false, length = 80)
     public String getNome() {
         return nome;
-    }
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    public StatusUsuarios getStatus() {
-        return status;
-    }
-
-    public void setStatus(StatusUsuarios status) {
-        this.status = status;
     }
 
     public void setNome(String nome) {
@@ -80,6 +70,7 @@ public class Usuario implements Serializable {
         this.senha = senha;
     }
 
+ 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "usuario_grupo", joinColumns = @JoinColumn(name = "usuario_id"),
             inverseJoinColumns = @JoinColumn(name = "grupo_id"))

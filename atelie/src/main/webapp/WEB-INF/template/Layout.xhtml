@@ -35,8 +35,8 @@
                             <p:menuitem value="Registrar Vendas" outcome="/publico/CadastroServicos" />                           
                         </p:submenu>
                         <p:submenu label="Administração" >                           
-                            <p:menuitem rendered="#{loginBean.isAdmin('FUNCIONARIOS')}" value="Cadastro de Usuários" outcome="/restrito/CadastroUsuarios" />                     
-
+                            <p:menuitem rendered="#{loginBean.isAdmin('FUNCIONARIOS')}" value="Usuários" outcome="/restrito/CadastroUsuarios" />                     
+                            <p:menuitem rendered="#{loginBean.isAdmin('FUNCIONARIOS')}" value="Grupos" outcome="/restrito/CadastroGrupos" />  
                             <p:menuitem rendered="#{loginBean.isAdmin('FUNCIONARIOS')}" value="Funcionários" outcome="/restrito/CadastroFuncionarios" />
                             <p:menuitem value="Tabela de Preços" outcome="/publico/ConsultaPrecos" />
                         </p:submenu>
