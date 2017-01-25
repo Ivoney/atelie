@@ -11,13 +11,13 @@
 
     <ui:define name="titulo">Tabela de Preços</ui:define>
     <ui:define name="corpo">
-        <p:panel id="basic" header="Tabela de Preços" style="margin-bottom:8px"> 
+        <p:panel id="basic" header="Consulta de Preços" style="margin-bottom:8px"> 
             <h:form id="frm">
 
                 <p:messages showDetail="false" showSummary="true" autoUpdate="true" />
                 <p:toolbar style="margin-top: 8px">
                     <p:toolbarGroup>
-                        <p:button rendered="#{loginBean.isAdmin('FUNCIONARIOS')}" value="Novo" outcome="/publico/TabelaPrecos.xhtml" />
+                        <p:button rendered="#{loginBean.isAdmin('FUNCIONARIOS')}" value="Novo" outcome="/restrito/TabelaPrecos.xhtml" />
                     </p:toolbarGroup>
                     <p:toolbarGroup align="right">
 
@@ -58,7 +58,7 @@
 
                     <p:column rendered="#{loginBean.isAdmin('FUNCIONARIOS')}" headerText="Ação" width="50" style="text-align: center">
 
-                        <p:button icon="ui-icon-pencil" title="Editar" outcome="/publico/TabelaPrecos.xhtml">
+                        <p:button icon="ui-icon-pencil" title="Editar" outcome="/restrito/TabelaPrecos.xhtml">
                             <f:param name="id" value="#{produto.id}" />
                         </p:button>
                         <p:commandButton icon="ui-icon-trash" title="Excluir" process="@this" update="@form"

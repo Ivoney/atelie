@@ -19,12 +19,12 @@ public class Usuarios implements Serializable {
     public Usuario porId(Long id) {
         return this.manager.find(Usuario.class, id);
     }
-    
-    public List<Usuario> todos(){
+
+    public List<Usuario> todos() {
         TypedQuery<Usuario> query = manager.createQuery("from Usuario", Usuario.class);
         return query.getResultList();
     }
-    
+
     public Usuario buscaPorEmail(String email) {
         Usuario usuario = null;
 
@@ -37,16 +37,29 @@ public class Usuarios implements Serializable {
 
         return usuario;
     }
-    
-    public void adicionar(Usuario usuario){
+
+    public Usuario porEmail(String email) {
+        Usuario usuario = null;
+
+        try {
+            usuario = this.manager.createQuery("from Usuario where lower(email) = :email", Usuario.class)
+                    .setParameter("email", email.toLowerCase()).getSingleResult();
+        } catch (NoResultException e) {
+            // nenhum usuário encontrado com o e-mail informado
+        }
+
+        return usuario;
+    }
+
+    public void adicionar(Usuario usuario) {
         this.manager.persist(usuario);
     }
-    
-    public Usuario guardar(Usuario usuario){
+
+    public Usuario guardar(Usuario usuario) {
         return manager.merge(usuario);
     }
 
-    public void remover(Usuario usuario){
+    public void remover(Usuario usuario) {
         this.manager.remove(usuario);
     }
 }

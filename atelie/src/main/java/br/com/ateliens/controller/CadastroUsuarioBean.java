@@ -28,7 +28,9 @@ public class CadastroUsuarioBean implements Serializable {
 
     private Usuario usuario;
 
-    private List<Grupo> lista;
+    private Grupo grupo;
+    
+    private List<Grupo> listaGrupos;
 
     private List<Usuario> todosUsuarios;
 
@@ -68,5 +70,22 @@ public class CadastroUsuarioBean implements Serializable {
     public StatusUsuarios[] getStatus() {
         return StatusUsuarios.values();
     }
+    
+       public List<Grupo> getListaGrupos() {
+        return this.usuario.getGrupos();
+    }
 
+    public void setListaGrupos(List<Grupo> listaGrupos) {
+        this.listaGrupos = listaGrupos;
+    }
+
+    public Grupo getGrupo() {
+        return grupo;
+    }
+
+    public void setGrupo(Grupo grupo) {
+        this.grupo = grupo;
+    }
+
+    
 }

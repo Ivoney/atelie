@@ -31,9 +31,9 @@
     <http pattern="/Erro.xhtml" security="none" />
     <http pattern="/javax.faces.resource/**" security="none" />
     
+    <!--<auto-config=true> configura a pagina de login automaticamente.-->
     <http auto-config="false" use-expressions="true">
-        <custom-filter ref="exceptionTranslationFilter" before="FILTER_SECURITY_INTERCEPTOR" />
-	
+        <custom-filter ref="exceptionTranslationFilter" before="FILTER_SECURITY_INTERCEPTOR" />	
         <intercept-url pattern="/BemVindo.xhtml" access="isAuthenticated()" />
         <intercept-url pattern="/AcessoNegado.xhtml" access="isAuthenticated()" />
         <intercept-url pattern="/publico/**" access="hasAnyRole('ADMINISTRADORES','FUNCIONARIOS')" />

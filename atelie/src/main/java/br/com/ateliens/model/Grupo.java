@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
  
+ 
 import javax.persistence.Table;
 
 @Entity
@@ -18,9 +19,7 @@ public class Grupo implements Serializable {
 
     private Long id;
     private String nome;
-    private String descricao;
-     
-
+ 
     @Id
     @GeneratedValue
     public Long getId() {
@@ -39,16 +38,8 @@ public class Grupo implements Serializable {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-    @Column(nullable = false, length = 40)
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
  
+    
     @Override
     public int hashCode() {
         final int prime = 31;

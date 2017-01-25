@@ -14,13 +14,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-
 public class AppUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		Usuarios usuarios = CDIServiceLocator.getBean(Usuarios.class);
-		Usuario usuario = usuarios.buscaPorEmail(email);
+		Usuario usuario = usuarios.porEmail(email);
 		
 		UsuarioSistema user = null;
 		

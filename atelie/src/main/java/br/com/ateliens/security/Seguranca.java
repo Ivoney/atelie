@@ -13,42 +13,33 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 @RequestScoped
 public class Seguranca {
 
-	@Inject
-	private ExternalContext externalContext;
-	
-	public String getNomeUsuario() {
-		String nome = null;
-		
-		UsuarioSistema usuarioLogado = getUsuarioLogado();
-		
-		if (usuarioLogado != null) {
-			nome = usuarioLogado.getUsuario().getNome();
-		}
-		
-		return nome;
-	}
+    @Inject
+    private ExternalContext externalContext;
 
-	@Produces
-	@UsuarioLogado
-	public UsuarioSistema getUsuarioLogado() {
-		UsuarioSistema usuario = null;
-		
-		UsernamePasswordAuthenticationToken auth = (UsernamePasswordAuthenticationToken) 
-				FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
-		
-		if (auth != null && auth.getPrincipal() != null) {
-			usuario = (UsuarioSistema) auth.getPrincipal();
-		}
-		
-		return usuario;
-	}
-	
-	/*public boolean isPermitido() {
-		return externalContext.isUserInRole("ADMINISTRADORES");
-	}
-	
-	public boolean naoPermitido() {
-		return externalContext.isUserInRole("FUNCIONARIOS");
-	}
-	*/
+    public String getNomeUsuario() {
+        String nome = null;
+
+        UsuarioSistema usuarioLogado = getUsuarioLogado();
+
+        if (usuarioLogado != null) {
+            nome = usuarioLogado.getUsuario().getNome();
+        }
+
+        return nome;
+    }
+
+    @Produces
+    @UsuarioLogado
+    public UsuarioSistema getUsuarioLogado() {
+        UsuarioSistema usuario = null;
+
+        UsernamePasswordAuthenticationToken auth = (UsernamePasswordAuthenticationToken) FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
+
+        if (auth != null && auth.getPrincipal() != null) {
+            usuario = (UsuarioSistema) auth.getPrincipal();
+        }
+
+        return usuario;
+    }
+
 }
