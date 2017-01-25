@@ -41,7 +41,10 @@
                     <p:column headerText="Senha" style="text-align: center" width="130">
                         <h:outputText value="#{usuario.senha}" />
                     </p:column>
-                    
+                    <p:column headerText="Grupo" style="text-align: center" width="130">
+                        <h:outputText value="#{usuario.grupos}" />
+                    </p:column>
+
                     <p:column headerText="Ação" width="50" style="text-align: center">
 
                         <p:button icon="ui-icon-pencil" title="Editar" outcome="/restrito/CadastroUsuarios.xhtml">
