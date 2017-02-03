@@ -10,6 +10,7 @@ import br.com.ateliens.repository.Grupos;
 import br.com.ateliens.service.CadastroGrupo;
 import br.com.ateliens.service.NegocioException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -23,14 +24,13 @@ public class GrupoBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
-     
     @Inject
     private CadastroGrupo cadastro;
     
     @Inject
     private Grupos grupos;
    
-    private Grupo grupo;
+    private Grupo grupo = new Grupo();
     
     private List<Grupo> todosGrupos;
     

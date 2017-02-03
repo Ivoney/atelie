@@ -9,6 +9,9 @@
     <f:metadata>
         <o:viewParam name="id" value="#{cadastroUsuarioBean.usuario}" />
         <f:viewAction action="#{cadastroUsuarioBean.prepararCadastroUsuario}" />  
+        <o:viewParam name="id" value="#{grupoBean.grupo}" />
+        <f:viewAction action="#{grupoBean.prepararCadastroGrupo}" />  
+
     </f:metadata>
     <ui:define name="titulo">Cadastro de Usuários</ui:define>
     <ui:define name="corpo">
@@ -40,7 +43,11 @@
 
                     <p:inputText id="senha" value="#{cadastroUsuarioBean.usuario.senha}" size="60" />
 
-                    
+                    <p:outputLabel value="Grupo" for="grupos" /> 
+                    <p:selectOneMenu value="#{grupoBean.grupo.nome}" id="grupos"> 
+                        <f:selectItem itemLabel="Selecione" noSelectionOption="true" /> 
+                        <f:selectItems value="#{grupoBean.todosGrupos}" var="grupos" itemValue="#{grupos}" itemLabel="#{grupos.nome}" /> 
+                    </p:selectOneMenu>
                 </p:panelGrid>
             </h:form>
         </p:panel>

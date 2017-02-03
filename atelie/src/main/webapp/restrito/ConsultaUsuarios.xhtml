@@ -42,7 +42,13 @@
                         <h:outputText value="#{usuario.senha}" />
                     </p:column>
                     <p:column headerText="Grupo" style="text-align: center" width="130">
-                        <h:outputText value="#{usuario.grupos}" />
+                        <f:facet name="header">
+                        <h:outputText value="Grupos" />
+                    </f:facet>
+                    <ui:repeat var="grupo" value="#{usuario.grupos}">
+                        <h:outputText value="#{grupo.nome}" />
+                        <br></br>
+                    </ui:repeat>
                     </p:column>
 
                     <p:column headerText="Ação" width="50" style="text-align: center">
