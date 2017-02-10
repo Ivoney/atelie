@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package br.com.ateliens.service;
 
 import br.com.ateliens.model.Grupo;
@@ -30,6 +31,7 @@ public class CadastroGrupo implements Serializable{
         grupo = this.grupos.porId(grupo.getId());
         this.grupos.remover(grupo);
     }
+    
     
     @Transacional
     public List<Grupo> listar(){

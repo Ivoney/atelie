@@ -6,6 +6,7 @@
 package br.com.ateliens.repository;
 
 import br.com.ateliens.model.Grupo;
+import br.com.ateliens.service.NegocioException;
 import java.io.Serializable;
 import java.util.List;
 import javax.inject.Inject;
@@ -23,6 +24,11 @@ public class Grupos implements Serializable {
 
     @Inject
     private EntityManager manager;
+    
+    @Inject
+    public Grupos(EntityManager manager){
+        this.manager = manager;
+    }
 
     public Grupo porId(Long id) {
         return this.manager.find(Grupo.class, id);
@@ -34,8 +40,8 @@ public class Grupos implements Serializable {
 
         return query.getResultList();
     }
-
-    public void adicionar(Grupo grupo) {
+    
+     public void adicionar(Grupo grupo) {
         this.manager.persist(grupo);
     }
 
@@ -43,7 +49,8 @@ public class Grupos implements Serializable {
         return manager.merge(grupo);
     }
 
-    public void remover(Grupo grupo) {
+    public void remover(Grupo grupo) throws NegocioException {
+ 
         this.manager.remove(grupo);
     }
 }

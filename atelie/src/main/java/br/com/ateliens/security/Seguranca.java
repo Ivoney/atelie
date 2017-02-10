@@ -41,5 +41,20 @@ public class Seguranca {
 
         return usuario;
     }
+    
+    public boolean isAcessoCadastroPermitido() {
+		return externalContext.isUserInRole("ADMINISTRADOR");
+				
+	}
+	
+	public boolean isAcessoEdicaoPermitido() {
+		return externalContext.isUserInRole("ADMINISTRADOR");
+				//|| externalContext.isUserInRole("CONSULTA");
+	}
+	
+	public boolean isAcessoRemocaoPermitido() {
+		return externalContext.isUserInRole("ADMINISTRADOR"); 
+				//|| externalContext.isUserInRole("CONSULTA");
+	}
 
 }

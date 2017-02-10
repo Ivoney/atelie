@@ -53,14 +53,14 @@ public class LoginBean implements Serializable {
     public boolean isAdmin(String role) {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        return request.isUserInRole("ADMINISTRADORES");
+        return request.isUserInRole("Administrador");
        
     }
 
     public boolean isFuncionario(String role) {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        return request.isUserInRole("FUNCIONARIOS");
+        return request.isUserInRole("Funcionario");
     }
 
     public String getEmail() {

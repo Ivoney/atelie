@@ -44,7 +44,7 @@
                     <p:inputText id="senha" value="#{cadastroUsuarioBean.usuario.senha}" size="60" />
 
                     <p:outputLabel value="Grupo" for="grupos" /> 
-                    <p:selectOneMenu value="#{grupoBean.grupo.nome}" id="grupos"> 
+                    <p:selectOneMenu value="#{grupoBean.grupo.nome}" id="grupos" filter="true" filterMatchMode="contains"> 
                         <f:selectItem itemLabel="Selecione" noSelectionOption="true" /> 
                         <f:selectItems value="#{grupoBean.todosGrupos}" var="grupos" itemValue="#{grupos}" itemLabel="#{grupos.nome}" /> 
                     </p:selectOneMenu>

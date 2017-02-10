@@ -5,6 +5,7 @@ import br.com.ateliens.model.Usuario;
 import br.com.ateliens.repository.Usuarios;
 import br.com.ateliens.util.jpa.Transacional;
 import java.io.Serializable;
+import java.util.Date;
 import javax.inject.Inject;
 
 public class CadastroUsuarios implements Serializable {
@@ -24,8 +25,8 @@ public class CadastroUsuarios implements Serializable {
         
         usuario = this.usuarios.porId(usuario.getId());
         this.usuarios.remover(usuario);
-        
-         
-     
+  
     }
+    
+   
 }

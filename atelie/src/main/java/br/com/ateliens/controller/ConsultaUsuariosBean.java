@@ -33,13 +33,7 @@ public class ConsultaUsuariosBean implements Serializable{
     private Usuarios usuariosRepository;
     
     @Inject
-    private Grupos grupos;
-    
-    @Inject
     private CadastroUsuarios cadastro;
-    
-    @Inject
-    private Grupo grupo;
     
     private List<Usuario> usuarios;
     
@@ -76,11 +70,4 @@ public class ConsultaUsuariosBean implements Serializable{
         this.usuarioSelecionado = usuarioSelecionado;
     }
 
-    public Grupo getGrupo() {
-        return grupo;
-    }
-
-    public void setGrupo(Grupo grupo) {
-        this.grupo = grupo;
-    }
 }

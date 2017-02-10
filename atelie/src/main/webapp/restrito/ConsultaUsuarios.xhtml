@@ -28,10 +28,10 @@
                     </p:toolbarGroup>
                 </p:toolbar>
                 <br/>
-                <p:dataTable var="usuario" emptyMessage="Nenhum usuario cadastrado." value="#{consultaUsuariosBean.usuario}" stickyHeader="true" resizableColumns="true" style="margin-bottom:20px" paginator="true"
+                <p:dataTable var="usuario" emptyMessage="Nenhum usuario cadastrado." 
+                             value="#{consultaUsuariosBean.usuario}" stickyHeader="true" 
+                             resizableColumns="true" style="margin-bottom:20px" paginator="true"
                              rows="10" paginatorPosition="bottom">
-
-
                     <p:column headerText="Usuario" style="text-align: center" width="130">
                         <h:outputText value="#{usuario.nome}" />
                     </p:column>
@@ -43,12 +43,12 @@
                     </p:column>
                     <p:column headerText="Grupo" style="text-align: center" width="130">
                         <f:facet name="header">
-                        <h:outputText value="Grupos" />
-                    </f:facet>
-                    <ui:repeat var="grupo" value="#{usuario.grupos}">
-                        <h:outputText value="#{grupo.nome}" />
-                        <br></br>
-                    </ui:repeat>
+                            <h:outputText value="Grupos" />
+                        </f:facet>
+                        <ui:repeat var="grupo" value="#{usuario.grupos}">
+                            <h:outputText value="#{grupo.nome}" />
+                            <br></br>
+                        </ui:repeat>
                     </p:column>
 
                     <p:column headerText="Ação" width="50" style="text-align: center">
