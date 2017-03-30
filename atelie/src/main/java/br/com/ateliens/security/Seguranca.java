@@ -43,7 +43,7 @@ public class Seguranca {
     }
     
     public boolean isAcessoCadastroPermitido() {
-		return externalContext.isUserInRole("ADMINISTRADOR");
+		return externalContext.isUserInRole("ADMINISTRADORES");
 				
 	}
 	

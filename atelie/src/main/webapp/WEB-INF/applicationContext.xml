@@ -36,9 +36,9 @@
         <custom-filter ref="exceptionTranslationFilter" before="FILTER_SECURITY_INTERCEPTOR" />	
         <intercept-url pattern="/BemVindo.xhtml" access="isAuthenticated()" />
         <intercept-url pattern="/AcessoNegado.xhtml" access="isAuthenticated()" />
-        <intercept-url pattern="/publico/**" access="permitAll" />
-        <intercept-url pattern="/restrito/**"  access="hasAnyRole('ADMINISTRADOR')" />
-        <intercept-url pattern="/relatorios/**" access="hasAnyRole('ADMINISTRADOR')" />
+        <intercept-url pattern="/publico/**"  access="isAuthenticated()" />  
+        <intercept-url pattern="/restrito/**"  access="hasAnyRole('ADMINISTRADORES')" />
+        <intercept-url pattern="/relatorios/**" access="hasAnyRole('ADMINISTRADORES')" />
         <intercept-url pattern="/**" access="denyAll" />
 		
         <form-login login-page="/Login.xhtml" authentication-failure-url="/Login.xhtml?invalid=true" 

@@ -4,10 +4,13 @@ import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
@@ -32,18 +35,16 @@ public class Cliente implements Serializable {
     @Email
     @Column(length = 40, nullable = false)
     private String email;
-
-    @NotEmpty
-    @Size(max = 80)
-    @Column(length = 50, nullable = false)
-    private String endereco;
+ 
+    @OneToOne(optional = false)
+    @JoinColumn(name = "endereco_id")
+    private Endereco endereco;
 
     @NotEmpty
     @Size(max = 20)
     @Column(length = 50, nullable = false)
     private String telefone;
- 
-    
+
     public Long getId() {
         return id;
     }
@@ -68,11 +69,11 @@ public class Cliente implements Serializable {
         this.email = email;
     }
 
-    public String getEndereco() {
+    public Endereco getEndereco() {
         return endereco;
     }
 
-    public void setEndereco(String endereco) {
+    public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
 
@@ -84,13 +85,11 @@ public class Cliente implements Serializable {
         this.telefone = telefone;
     }
 
- 
-
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 53 * hash + Objects.hashCode(this.id);
-        hash = 53 * hash + Objects.hashCode(this.nome);
+        int hash = 7;
+        hash = 59 * hash + Objects.hashCode(this.nome);
+        hash = 59 * hash + Objects.hashCode(this.endereco);
         return hash;
     }
 
@@ -110,6 +109,9 @@ public class Cliente implements Serializable {
             return false;
         }
         if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.endereco, other.endereco)) {
             return false;
         }
         return true;

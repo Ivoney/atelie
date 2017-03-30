@@ -10,16 +10,17 @@
         <o:viewParam name="id" value="#{cadastroClienteBean.cliente}" />    
         <f:viewAction action="#{cadastroClienteBean.prepararCadastroCliente}" />
         <f:viewAction action="#{consultaClienteBean.consultar}" />
+   
     </f:metadata>
     <ui:define name="titulo">Cadastro de clientes</ui:define>
     <ui:define name="corpo">
-        
+
         <p:panel id="basic" header="Cadastrar Clientes" style="margin-bottom:20px">
             <h:form id="frm" style="display: inline-block; width: 100%" >
                 <p:messages showDetail="false" showSummary="true" autoUpdate="true" />
                 <p:toolbar style="margin-top: 10px">
                     <p:toolbarGroup>
-                       
+
                         <p:commandButton value="Salvar" id="botaoSalvar"
                                          action="#{cadastroClienteBean.salvar}" update="@form" icon="ui-icon-disk"
                                          validateClient="false" />
@@ -29,17 +30,42 @@
                     </p:toolbarGroup>
                 </p:toolbar>
                 <br/>
-                <p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 10px"
+                <hr/>
+                <h2>Endereco Cliente</h2>
+                <p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px"
                              columnClasses="rotulo, campo">
                     <p:outputLabel value="Cliente" for="cliente" />
                     <p:inputText id="cliente" value="#{cadastroClienteBean.cliente.nome}" size="60" />
-                    <p:outputLabel value="Endereço" for="endereco" />
-                    <p:inputText id="endereco" value="#{cadastroClienteBean.cliente.endereco}" size="60" />
+
                     <p:outputLabel value="Telefone" for="telefone" />
                     <p:inputText id="telefone" value="#{cadastroClienteBean.cliente.telefone}" size="30" />
                     <p:outputLabel value="Email" for="email" />
                     <p:inputText id="email" value="#{cadastroClienteBean.cliente.email}" size="60"/>
                 </p:panelGrid>
+                <h:panelGroup id="panelEndereco">
+                    <p:outputLabel value="CEP" for="cep" />
+                    <p:inputText id="cep" value="#{enderecoBean.cep}" size="60" />
+
+                    <p:commandButton value="Consultar">
+                        <f:ajax event="click" render="panelEndereco"
+                                execute="@this txtCep"
+                                listener="#{enderecoBean.carregaEndereco}" />
+                    </p:commandButton>
+                 
+                    <p:outputLabel value="Logradouro" for="logradouro" />
+                    <p:inputText id="logradouro" value="#{cadastroClienteBean.cliente.endereco.logradouro}" size="80" />
+                    <p:outputLabel value="Complemento" for="complemento" />
+                    <p:inputText id="complemento" value="#{cadastroClienteBean.cliente.endereco.complemento}" size="60" />
+                    <p:outputLabel value="Bairro" for="bairro" />
+                    <p:inputText id="bairro" value="#{cadastroClienteBean.cliente.endereco.bairro}" size="60" />
+                    <p:outputLabel value="Estado" for="estado" />
+                    <p:inputText id="estado" value="#{cadastroClienteBean.cliente.endereco.uf}" size="60" />
+                    <p:outputLabel value="Cidade" for="cidade" />
+                    <p:inputText id="cidade" value="#{cadastroClienteBean.cliente.endereco.localidade}" size="60" />
+                    <p:outputLabel value="Número" for="numero" />
+                    <p:inputText id="numero" value="#{cadastroClienteBean.cliente.endereco.numero}" size="60" />
+                </h:panelGroup>
+
 
             </h:form>
         </p:panel>
